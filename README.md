@@ -92,5 +92,22 @@ Listeden bir otele tıklandığında `getHotelDetails` endpoint'i ile detay sayf
 - Giriş/çıkış tarihleri otel listesinden detay sayfasına `Session` aracılığıyla taşınmaktadır
 
 ---
+📸 Ekran Görüntüleri
+📊 Yönetim Paneli — Canlı Veri Ekranı
+<img width="1863" height="902" alt="10 04 2026" src="https://github.com/user-attachments/assets/71641150-4199-4012-a44f-26b6e6b757f9" />
+🖼️ Otel Arama ve Detay Sayfası
+
+<img width="1895" height="913" alt="2" src="https://github.com/user-attachments/assets/d6916edc-47b1-4973-b056-d094df211f2a" />
+
+<img width="1890" height="787" alt="1" src="https://github.com/user-attachments/assets/e7ffff20-a41e-4c17-bb0b-c551e790a1e8" />
+
+<img width="1891" height="918" alt="3" src="https://github.com/user-attachments/assets/18bbfccb-ea89-4bc1-8a08-cba80e478c0b" />
+
+<img width="1887" height="871" alt="4" src="https://github.com/user-attachments/assets/edd125ae-7e98-4d9e-8c0b-018ed7d6d635" />
+
+<img width="1893" height="902" alt="5" src="https://github.com/user-attachments/assets/7e3531c4-abbe-4ee2-a502-5165da40fc72" />
+
+
+
 
 > Geliştirici: Münevver Orman — 2026
