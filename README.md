@@ -104,11 +104,10 @@ Listeden bir otele tıklandığında `getHotelDetails` endpoint'i ile detay sayf
 
 
 
-<img width="1895" height="913" alt="2" src="https://github.com/user-attachments/assets/d6916edc-47b1-4973-b056-d094df211f2a" />
-
-
-
 <img width="1890" height="787" alt="1" src="https://github.com/user-attachments/assets/e7ffff20-a41e-4c17-bb0b-c551e790a1e8" />
+
+
+<img width="1895" height="913" alt="2" src="https://github.com/user-attachments/assets/d6916edc-47b1-4973-b056-d094df211f2a" />
 
 
 
