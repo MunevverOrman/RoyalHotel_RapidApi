@@ -1,0 +1,280 @@
+﻿<!DOCTYPE html>
+
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Hotel Management Dashboard - Right Panel</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Theme Configuration -->
+    <script>
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#36e27b",
+                "background-light": "#f6f8f7",
+                "background-dark": "#112117",
+                "card-dark": "#1a2c22", // Custom slightly lighter dark for cards
+                "card-light": "#ffffff",
+                "text-subtle": "#9ca3af",
+              },
+              fontFamily: {
+                "display": ["Spline Sans", "sans-serif"]
+              },
+              borderRadius: {
+                  "DEFAULT": "1rem",
+                  "lg": "1.5rem",
+                  "xl": "2rem",
+                  "2xl": "2.5rem",
+                  "full": "9999px"
+              },
+            },
+          },
+        }
+    </script>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased text-slate-900 dark:text-white transition-colors duration-300">
+    <div class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden max-w-md mx-auto shadow-2xl">
+        <!-- Header -->
+        <header class="sticky top-0 z-10 flex items-center justify-between bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-6 py-4 border-b border-slate-200 dark:border-white/5">
+            <div class="flex items-center gap-3">
+                <button class="flex items-center justify-center size-10 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
+                    <span class="material-symbols-outlined text-[24px]">menu_open</span>
+                </button>
+                <h1 class="text-xl font-bold tracking-tight">Daily Briefing</h1>
+            </div>
+            <div class="size-10 rounded-full bg-primary overflow-hidden border-2 border-background-light dark:border-background-dark ring-2 ring-primary/20">
+                <img alt="User Profile" class="w-full h-full object-cover" data-alt="Professional man portrait avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBipzqkMUYvakceZLnZh18Gy5mLpytBjmpvzZ3dh1Q-RNglqVR6xg4p67EVElK_ETTAR6zwYII_3P0seAQ0bV0fMbq6onJjZQkCxTn41sIVqPO6huTaNsK-MV4O84AEGK05DjS2dpCJHKVWpFyRdP2wLqrBE8aNSuplwHgIaj4wnjCNPEcxARlDBge0b3NRfoVETkq0ECvFcAanwPA7zeyM6q85V7gFcbgZN94DuQGb83xS33Ag0RtzV3AAsYsgLusRrrymKPeYqoE" />
+            </div>
+        </header>
+        <main class="flex-1 flex flex-col gap-6 p-6">
+            <!-- 1) Financial Data Card -->
+            <section class="flex flex-col gap-3">
+                <div class="flex items-center justify-between px-1">
+                    <h2 class="text-sm font-semibold uppercase tracking-wider text-text-subtle flex items-center gap-2">
+                        <span class="material-symbols-outlined text-[18px]">monitoring</span>
+                        Market Watch
+                    </h2>
+                    <span class="text-xs text-primary font-medium cursor-pointer">View All</span>
+                </div>
+                <!-- Currency Grid -->
+                <div class="grid grid-cols-2 gap-3">
+                    <!-- USD -->
+                    <div class="bg-card-light dark:bg-card-dark rounded-xl p-4 border border-slate-200 dark:border-white/5 shadow-sm">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm text-text-subtle font-medium">USD/TRY</span>
+                            <span class="material-symbols-outlined text-[20px] text-primary">attach_money</span>
+                        </div>
+                        <div class="flex items-end justify-between">
+                            <span class="text-xl font-bold">32.50 ₺</span>
+                            <span class="flex items-center text-xs font-bold text-primary bg-primary/10 px-1.5 py-0.5 rounded-full">
+                                <span class="material-symbols-outlined text-[12px] mr-0.5">trending_up</span>
+                                0.5%
+                            </span>
+                        </div>
+                    </div>
+                    <!-- EUR -->
+                    <div class="bg-card-light dark:bg-card-dark rounded-xl p-4 border border-slate-200 dark:border-white/5 shadow-sm">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm text-text-subtle font-medium">EUR/TRY</span>
+                            <span class="material-symbols-outlined text-[20px] text-blue-400">euro</span>
+                        </div>
+                        <div class="flex items-end justify-between">
+                            <span class="text-xl font-bold">35.12 ₺</span>
+                            <span class="flex items-center text-xs font-bold text-primary bg-primary/10 px-1.5 py-0.5 rounded-full">
+                                <span class="material-symbols-outlined text-[12px] mr-0.5">trending_up</span>
+                                0.2%
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Crypto Row (Horizontal Scroll) -->
+                <div class="flex gap-3 overflow-x-auto pb-2 -mx-6 px-6 scrollbar-hide">
+                    <!-- BTC -->
+                    <div class="min-w-[140px] bg-card-light dark:bg-card-dark rounded-xl p-3 border border-slate-200 dark:border-white/5 flex flex-col gap-1">
+                        <div class="flex items-center gap-2">
+                            <div class="size-6 rounded-full bg-orange-500/20 flex items-center justify-center text-orange-500">
+                                <span class="material-symbols-outlined text-[14px]">currency_bitcoin</span>
+                            </div>
+                            <span class="text-sm font-medium">Bitcoin</span>
+                        </div>
+                        <div class="flex items-baseline gap-2 mt-1">
+                            <span class="text-lg font-bold">$64,200</span>
+                            <span class="text-xs text-red-500 font-medium">-1.2%</span>
+                        </div>
+                    </div>
+                    <!-- ETH -->
+                    <div class="min-w-[140px] bg-card-light dark:bg-card-dark rounded-xl p-3 border border-slate-200 dark:border-white/5 flex flex-col gap-1">
+                        <div class="flex items-center gap-2">
+                            <div class="size-6 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-500">
+                                <span class="material-symbols-outlined text-[14px]">token</span>
+                            </div>
+                            <span class="text-sm font-medium">Ethereum</span>
+                        </div>
+                        <div class="flex items-baseline gap-2 mt-1">
+                            <span class="text-lg font-bold">$3,450</span>
+                            <span class="text-xs text-primary font-medium">+0.8%</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- 2) Fuel Prices Card -->
+            <section class="bg-card-light dark:bg-card-dark rounded-2xl p-5 border border-slate-200 dark:border-white/5 shadow-sm">
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="material-symbols-outlined text-orange-400">local_gas_station</span>
+                    <h3 class="text-base font-bold">Fuel Prices (TR)</h3>
+                </div>
+                <div class="flex flex-col gap-3">
+                    <div class="flex justify-between items-center py-2 border-b border-slate-100 dark:border-white/5">
+                        <div class="flex items-center gap-3">
+                            <div class="size-2 rounded-full bg-primary"></div>
+                            <span class="text-sm text-text-subtle">Benzin</span>
+                        </div>
+                        <span class="font-mono font-bold">41.20 ₺</span>
+                    </div>
+                    <div class="flex justify-between items-center py-2 border-b border-slate-100 dark:border-white/5">
+                        <div class="flex items-center gap-3">
+                            <div class="size-2 rounded-full bg-yellow-400"></div>
+                            <span class="text-sm text-text-subtle">Motorin</span>
+                        </div>
+                        <span class="font-mono font-bold">40.50 ₺</span>
+                    </div>
+                    <div class="flex justify-between items-center py-2">
+                        <div class="flex items-center gap-3">
+                            <div class="size-2 rounded-full bg-blue-400"></div>
+                            <span class="text-sm text-text-subtle">LPG</span>
+                        </div>
+                        <span class="font-mono font-bold">20.15 ₺</span>
+                    </div>
+                </div>
+            </section>
+            <!-- 3) Weather Card -->
+            <section class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-700 text-white p-6 shadow-lg">
+                <!-- Abstract BG Pattern -->
+                <div class="absolute top-0 right-0 -mr-8 -mt-8 size-32 rounded-full bg-white/10 blur-2xl"></div>
+                <div class="absolute bottom-0 left-0 -ml-8 -mb-8 size-24 rounded-full bg-primary/20 blur-xl"></div>
+                <div class="relative z-10 flex justify-between items-start">
+                    <div>
+                        <div class="flex items-center gap-1 opacity-90 mb-1">
+                            <span class="material-symbols-outlined text-[16px]">location_on</span>
+                            <span class="text-sm font-medium tracking-wide">Antalya, TR</span>
+                        </div>
+                        <div class="text-5xl font-bold tracking-tight my-2">28°</div>
+                        <p class="text-blue-100 font-medium text-lg">Sunny Intervals</p>
+                    </div>
+                    <div class="flex flex-col items-center gap-1">
+                        <span class="material-symbols-outlined text-[48px] text-yellow-300 drop-shadow-lg">partly_cloudy_day</span>
+                    </div>
+                </div>
+                <div class="relative z-10 grid grid-cols-2 gap-4 mt-6 pt-4 border-t border-white/20">
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-[18px] opacity-70">water_drop</span>
+                        <span class="text-sm font-medium">45% Hum</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-[18px] opacity-70">air</span>
+                        <span class="text-sm font-medium">12 km/h</span>
+                    </div>
+                </div>
+            </section>
+            <!-- 4) AI Suggestion Card -->
+            <section class="relative bg-card-light dark:bg-card-dark rounded-2xl p-[1px] bg-gradient-to-r from-primary/50 via-purple-500/50 to-primary/50 shadow-md">
+                <div class="bg-background-light dark:bg-background-dark rounded-[15px] p-5 h-full relative overflow-hidden">
+                    <!-- Header -->
+                    <div class="flex items-center gap-2 mb-3">
+                        <div class="size-6 rounded-full bg-gradient-to-r from-primary to-purple-500 flex items-center justify-center shadow-lg shadow-primary/20">
+                            <span class="material-symbols-outlined text-white text-[14px]">smart_toy</span>
+                        </div>
+                        <h3 class="text-sm font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-400">
+                            Chef's AI Recommendation
+                        </h3>
+                    </div>
+                    <!-- Content -->
+                    <div class="flex gap-4 items-center">
+                        <div class="flex-1">
+                            <p class="text-base leading-relaxed text-slate-700 dark:text-slate-200">
+                                <span class="font-serif italic text-lg text-primary">"</span>Slow-roasted Lamb Shank with rosemary infusion, paired with a local Cabernet.<span class="font-serif italic text-lg text-primary">"</span>
+                            </p>
+                        </div>
+                        <div class="size-16 rounded-xl overflow-hidden shrink-0 shadow-md">
+                            <img alt="Gourmet lamb dish plating" class="w-full h-full object-cover" data-alt="Plated gourmet lamb shank dish" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCh4vGLwUcstpA4-thW-wyoy3zQFxr6AX0x6J6NPZxtyvaZ-PwpARFyZ6CEDy72B9U0QHcoqo8ZnDrv2dYz0epgR4VM0ZCDE3etMtqhSNuNhgsWJpcBuxecGN1EZDU5DR3CMh1dYU9H_oGck0GZaJsRm3oOqRYj2Qpv1moWnmUI8D77rcSuZgLfPtv69MJ3NBaDEQ6n_BpEb8HQ6acC3PS5R7Y_oNLjIT5vamddIpnrcqi7_ai5el6hwY1yNWP3cW3kyqYgMfhriR4" />
+                        </div>
+                    </div>
+                    <!-- Action -->
+                    <button class="w-full mt-4 py-2 rounded-full border border-primary/20 hover:bg-primary/10 text-primary text-sm font-medium transition-colors flex items-center justify-center gap-2">
+                        <span>Notify Kitchen</span>
+                        <span class="material-symbols-outlined text-[16px]">send</span>
+                    </button>
+                </div>
+            </section>
+            <!-- 5) Travel Route Suggestions -->
+            <section class="flex flex-col gap-4 pb-6">
+                <div class="flex items-center justify-between px-1">
+                    <h2 class="text-sm font-semibold uppercase tracking-wider text-text-subtle flex items-center gap-2">
+                        <span class="material-symbols-outlined text-[18px]">map</span>
+                        Concierge Picks
+                    </h2>
+                </div>
+                <div class="flex flex-col gap-3">
+                    <!-- Item 1 -->
+                    <div class="group flex items-center gap-4 bg-card-light dark:bg-card-dark p-3 rounded-2xl border border-slate-200 dark:border-white/5 hover:border-primary/50 transition-colors cursor-pointer shadow-sm">
+                        <div class="size-16 rounded-xl overflow-hidden shrink-0 bg-slate-200">
+                            <img alt="Düden Waterfalls landscape" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Waterfall in nature setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtsRXIvUq6V15geFeazGxm0KfOkEuIbfHkgvPJGXKUki0UNDqZUyuQ0la_hLO4u1xKfEet5BWz8gnK-AGjeCgJd-93sOChFTOFSwt0ArTJT9xflUo7eTSJGl4pCONajDf5lpclLsKHRxawUbDeq_pEeNXvTHAYxesa9wP6g20jT9KNOfdn9kMCkX4rLERHbY0t9G--Vtx7ThhgUpiSCOav1930j1eOLmy0MwjxhKJLuYM4zC4fdrXAWdSGWE9-BAvzxegUZJ8xKF4" />
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <h4 class="font-bold text-sm mb-1 truncate">Düden Waterfalls</h4>
+                            <p class="text-xs text-text-subtle line-clamp-2">A scenic nature park perfect for afternoon walks and photography.</p>
+                        </div>
+                        <div class="flex items-center justify-center size-8 rounded-full bg-background-light dark:bg-background-dark border border-slate-200 dark:border-white/10 group-hover:bg-primary group-hover:text-black transition-all">
+                            <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+                        </div>
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="group flex items-center gap-4 bg-card-light dark:bg-card-dark p-3 rounded-2xl border border-slate-200 dark:border-white/5 hover:border-primary/50 transition-colors cursor-pointer shadow-sm">
+                        <div class="size-16 rounded-xl overflow-hidden shrink-0 bg-slate-200">
+                            <img alt="Old Town Kaleiçi architecture" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Historic stone street view" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4KDIPtbzzO2eudwUtkNZjJ84NZdWBXxyukaVpjqz5PR9-djBHhVhekvdBZLUn6OvVRs2V_XK6OlNPk0uNLu7W8chQlJsuTVMHXiN7Q-dr8mckkQqaHCPzigmSL93wRS4i73gxz2K4ADUblzUK6TGK3yfT_7zuFQXqcntUEs-6B_JYpIW6b6sBkYarBBiie5ZUQ8ptz03-17fJTyWlewkpkFOtVmFi2ZTzmPeY8yfuomr1KaZQ18VvPl847C5yTnvi3FNcYjVut3o" />
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <h4 class="font-bold text-sm mb-1 truncate">Old Town (Kaleiçi)</h4>
+                            <p class="text-xs text-text-subtle line-clamp-2">Historic Ottoman-era architecture, narrow streets, and boutique shops.</p>
+                        </div>
+                        <div class="flex items-center justify-center size-8 rounded-full bg-background-light dark:bg-background-dark border border-slate-200 dark:border-white/10 group-hover:bg-primary group-hover:text-black transition-all">
+                            <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+                        </div>
+                    </div>
+                    <!-- Item 3 -->
+                    <div class="group flex items-center gap-4 bg-card-light dark:bg-card-dark p-3 rounded-2xl border border-slate-200 dark:border-white/5 hover:border-primary/50 transition-colors cursor-pointer shadow-sm">
+                        <div class="size-16 rounded-xl overflow-hidden shrink-0 bg-slate-200">
+                            <img alt="Konyaaltı Beach view" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Sunny beach with mountains" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEnmJecnCcF19K8QcOoNRwZlrcCU8xs715HjJV5lWGuI4sK3a9bvJqLpK7hL0wizXBBU3F4YmvCTz9MItoq4vDQ6SGJ54IacNq2pMQXrS07vG-IEZHUTlHCnombCAMvj60eqP65SFSQ63sJnaN0vmrrvkwaH5S5puVBH-RgvbfBhjrHoK5mKfhiH18-amROJcq-915St1iI9zDPtWqMPxkhXyaIRIrXc2CzNPul4ZknO8Qitl_ou9KUDnvgLrUSp0VnmUR_D80uTw" />
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <h4 class="font-bold text-sm mb-1 truncate">Konyaaltı Beach</h4>
+                            <p class="text-xs text-text-subtle line-clamp-2">Relax by the Mediterranean sea with stunning mountain views.</p>
+                        </div>
+                        <div class="flex items-center justify-center size-8 rounded-full bg-background-light dark:bg-background-dark border border-slate-200 dark:border-white/10 group-hover:bg-primary group-hover:text-black transition-all">
+                            <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <!-- Bottom Fade for scroll hint -->
+        <div class="pointer-events-none fixed bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-background-light dark:from-background-dark to-transparent z-20"></div>
+    </div>
+</body>
+</html>

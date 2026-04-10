@@ -1,0 +1,218 @@
+﻿@model RoyalHotel_RapidApi.Models.HotelDetailViewModel
+@{
+    Layout = null;
+}
+<!doctype html>
+<html lang="tr">
+@await Component.InvokeAsync("_DefaultHeadComponent")
+<body>
+
+@await Component.InvokeAsync("_DefaultHeaderComponent")
+
+@* Breadcrumb *@
+<section class="breadcrumb_area">
+    <div class="overlay bg-parallax"></div>
+    <div class="container">
+        <div class="text-center">
+            <span class="page-cover-tittle">@Model.Name</span>
+            <nav>
+                <ol class="breadcrumb justify-content-center">
+                    <li class="breadcrumb-item"><a href="/">Anasayfa</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:history.back()">Oteller</a></li>
+                    <li class="breadcrumb-item active">Detay</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</section>
+
+@* Foto Slider *@
+@if (Model.PhotoUrls != null && Model.PhotoUrls.Any())
+{
+    <section style="background:#04091e; padding: 0;">
+        <div class="container-fluid p-0">
+            <div id="hotelSlider" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    @for (int i = 0; i < Model.PhotoUrls.Count; i++)
+                    {
+                        <li data-target="#hotelSlider" data-slide-to="@i"
+                            class="@(i == 0 ? "active" : "")"></li>
+                    }
+                </ol>
+                <div class="carousel-inner">
+                    @for (int i = 0; i < Model.PhotoUrls.Count; i++)
+                    {
+                        <div class="carousel-item @(i == 0 ? "active" : "")">
+                            <img src="@Model.PhotoUrls[i]" alt="@Model.Name"
+                                 style="width:100%; height:520px; object-fit:cover;" />
+                        </div>
+                    }
+                </div>
+                <a class="carousel-control-prev" href="#hotelSlider" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </a>
+                <a class="carousel-control-next" href="#hotelSlider" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </a>
+            </div>
+        </div>
+    </section>
+}
+
+@* Ana İçerik *@
+<section class="section_gap" style="background:#fff;">
+    <div class="container">
+        <div class="row">
+
+            @* Sol — Otel Bilgileri *@
+            <div class="col-lg-8">
+
+                @* Başlık ve Puan *@
+                <div class="d-flex align-items-start justify-content-between flex-wrap" style="margin-bottom:20px;">
+                    <div>
+                        <h2 class="title_color" style="font-size:28px; margin-bottom:6px;">
+                            @Model.Name
+                        </h2>
+                        <p style="color:#777; font-size:13px; margin:0;">
+                            <i class="fa fa-map-marker" style="color:#f3c300;"></i>
+                            @Model.Address, @Model.City
+                        </p>
+                    </div>
+                    @if (Model.ReviewScore > 0)
+                    {
+                        <div class="text-center" style="min-width:80px;">
+                            <div style="background:#f3c300; color:#222; font-size:24px;
+                                        font-weight:700; padding:10px 18px; display:inline-block;">
+                                @Model.ReviewScore.ToString("0.0")
+                            </div>
+                            <p style="font-size:12px; color:#777; margin:4px 0 0;">
+                                @Model.ReviewScoreWord<br />
+                                <span style="color:#52c5fd;">@Model.ReviewCount yorum</span>
+                            </p>
+                        </div>
+                    }
+                </div>
+
+                <hr style="border-color:#eeeeee;" />
+
+                @* Açıklama *@
+                @if (!string.IsNullOrEmpty(Model.Description))
+                {
+                    <div style="margin-bottom:30px;">
+                        <h4 class="sec_h4" style="margin-bottom:12px;">
+                            <i class="fa fa-info-circle" style="color:#f3c300; margin-right:8px;"></i>
+                            Otel Hakkında
+                        </h4>
+                        <p style="line-height:28px; color:#777;">@Model.Description</p>
+                    </div>
+                    <hr style="border-color:#eeeeee;" />
+                }
+
+                @* Olanaklar *@
+                @if (Model.Facilities != null && Model.Facilities.Any())
+                {
+                    <div style="margin-bottom:30px;">
+                        <h4 class="sec_h4" style="margin-bottom:16px;">
+                            <i class="fa fa-check-circle" style="color:#f3c300; margin-right:8px;"></i>
+                            Otel Olanakları
+                        </h4>
+                        <div class="row">
+                            @foreach (var facility in Model.Facilities)
+                            {
+                                <div class="col-md-4 col-6" style="margin-bottom:10px;">
+                                    <span style="font-size:13px; color:#555;">
+                                        <i class="fa fa-check" style="color:#52c5fd; margin-right:6px;"></i>
+                                        @facility
+                                    </span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <hr style="border-color:#eeeeee;" />
+                }
+
+                @* Harita *@
+                @if (Model.Latitude != 0 && Model.Longitude != 0)
+                {
+                    <div style="margin-bottom:10px;">
+                        <h4 class="sec_h4" style="margin-bottom:16px;">
+                            <i class="fa fa-map" style="color:#f3c300; margin-right:8px;"></i>
+                            Konum
+                        </h4>
+                        <div style="border-radius:10px; overflow:hidden; border:1px solid #eee;">
+                                <iframe src="https://maps.google.com/maps?q=@(Model.Latitude.ToString("0.0000000", System.Globalization.CultureInfo.InvariantCulture)),@(Model.Longitude.ToString("0.0000000", System.Globalization.CultureInfo.InvariantCulture))&z=15&output=embed"
+                                        width="100%" height="300" frameborder="0"
+                                        style="border:0; display:block;" allowfullscreen>
+                                </iframe>
+                        </div>
+                    </div>
+                }
+
+            </div>
+
+            @* Sağ — Rezervasyon Kutusu *@
+            <div class="col-lg-4">
+                <div style="background:#04091e; padding:30px; border-radius:10px; position:sticky; top:20px;">
+
+                    <h4 style="color:#fff; font-size:18px; margin-bottom:20px; text-transform:uppercase;">
+                        Rezervasyon
+                    </h4>
+
+                    @if (Model.Price > 0)
+                    {
+                        <div style="text-align:center; margin-bottom:20px; padding:16px 0;
+                                    border-top:1px solid #2b3146; border-bottom:1px solid #2b3146;">
+                            <span style="color:#777; font-size:12px; display:block;">Gecelik fiyat</span>
+                            <span style="color:#f3c300; font-size:36px; font-weight:700;">
+                                €@Model.Price.ToString("0")
+                            </span>
+                        </div>
+                    }
+
+                    <div style="margin-bottom:12px;">
+                        <p style="color:#777; font-size:12px; margin-bottom:4px;">
+                            <i class="fa fa-map-marker" style="color:#f3c300;"></i> Adres
+                        </p>
+                        <p style="color:#fff; font-size:13px; margin:0;">
+                            @Model.Address, @Model.City
+                        </p>
+                    </div>
+
+                    @if (Model.ReviewScore > 0)
+                    {
+                        <div style="margin-bottom:20px;">
+                            <p style="color:#777; font-size:12px; margin-bottom:4px;">
+                                <i class="fa fa-star" style="color:#f3c300;"></i> Puan
+                            </p>
+                            <p style="color:#fff; font-size:13px; margin:0;">
+                                @Model.ReviewScore.ToString("0.0") / 10 — @Model.ReviewScoreWord
+                                <span style="color:#777;">(@Model.ReviewCount yorum)</span>
+                            </p>
+                        </div>
+                    }
+
+                        <a href="https://www.booking.com/hotel/@(Model.CountryCode)/@(Model.HotelId).html"
+                           target="_blank"
+                           class="book_now_btn button_hover"
+                           style="display:block; text-align:center; padding:12px 20px; font-size:14px; margin-bottom:12px;">
+                            <i class="fa fa-calendar-check-o"></i> Booking.com'da Rezerve Et
+                        </a>
+
+                    <a href="javascript:history.back()"
+                       class="theme_btn_two button_hover"
+                       style="display:block; text-align:center; padding:10px 20px; font-size:13px;">
+                        <i class="fa fa-arrow-left"></i> Otellere Dön
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+@await Component.InvokeAsync("_DefaultFooterComponent")
+@await Component.InvokeAsync("_DefaultScriptComponent")
+
+</body>
+</html>

@@ -1,0 +1,144 @@
+﻿@model RoyalHotel_RapidApi.Models.HotelListViewModel
+@{
+    Layout = null;
+}
+<!doctype html>
+<html lang="tr">
+@await Component.InvokeAsync("_DefaultHeadComponent")
+<body>
+    @await Component.InvokeAsync("_DefaultHeaderComponent")
+
+    <section class="breadcrumb_area">
+        <div class="overlay bg-parallax"></div>
+        <div class="container">
+            <div class="text-center">
+                <span class="page-cover-tittle">Otel Arama Sonuçları</span>
+                <nav>
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="/">Anasayfa</a></li>
+                        <li class="breadcrumb-item active">@Model.City</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    <section style="background: #04091e; padding: 20px 0;">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-between">
+                <p style="color: #777; margin: 0; font-size: 13px;">
+                    <i class="fa fa-map-marker" style="color: #f3c300;"></i>
+                    <span style="color: #fff; font-weight: 600;">@Model.City</span>
+                    &nbsp;|&nbsp;
+                    <i class="fa fa-calendar" style="color: #f3c300;"></i>
+                    @Model.CheckIn → @Model.CheckOut
+                    &nbsp;|&nbsp;
+                    <i class="fa fa-user" style="color: #f3c300;"></i>
+                    @Model.AdultCount Yetişkin
+                </p>
+                <a href="/" class="theme_btn button_hover" style="font-size: 12px; padding: 4px 20px;">
+                    <i class="fa fa-search"></i> Yeni Arama
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="accomodation_area section_gap">
+        <div class="container">
+
+            @if (ViewBag.Error != null)
+            {
+                <div style="background: #f3c30022; border: 1px solid #f3c300; color: #f3c300; padding: 15px; margin-bottom: 40px; text-align:center;">
+                    <i class="fa fa-exclamation-triangle"></i> @ViewBag.Error
+                </div>
+            }
+
+            <div class="section_title text-center">
+                <h2 class="title_color">
+                    @Model.City <span style="color: #f3c300;">Otelleri</span>
+                </h2>
+                @if (Model.Hotels != null && Model.Hotels.Any())
+                {
+                    <p>@Model.Hotels.Count otel bulundu</p>
+                }
+                else
+                {
+                    <p>Arama kriterlerinize uygun otel bulunamadı.</p>
+                }
+            </div>
+
+            @if (Model.Hotels != null && Model.Hotels.Any())
+            {
+                <div class="row mb_30">
+                    @foreach (var hotel in Model.Hotels)
+                    {
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="accomodation_item text-center">
+                                <div class="hotel_img">
+                                    @if (!string.IsNullOrEmpty(hotel.main_photo_url))
+                                    {
+                                        <img src="@hotel.main_photo_url" alt="@hotel.name"
+                                             style="width:100%; height:220px; object-fit:cover;" />
+                                    }
+                                    else
+                                    {
+                                        <img src="~/royal-master/image/room1.jpg" alt="@hotel.name"
+                                             style="width:100%; height:220px; object-fit:cover;" />
+                                    }
+                                    <a href="/Booking/HotelDetail/@hotel.hotel_id" class="btn theme_btn button_hover">
+                                        Detay
+                                    </a>
+                                </div>
+
+                                <a href="/Booking/HotelDetail/@hotel.hotel_id">
+                                    <h4 class="sec_h4" style="font-size:15px; line-height:22px; margin-top:8px;">
+                                        @hotel.name
+                                    </h4>
+                                </a>
+
+                                @if (hotel.review_score > 0)
+                                {
+                                    <div style="margin: 4px 0;">
+                                        <span style="background:#f3c300; color:#222; font-size:12px; font-weight:600; padding:2px 8px; display:inline-block;">
+                                            ★ @hotel.review_score.ToString("0.0")
+                                        </span>
+                                        <span style="font-size:12px; color:#777; margin-left:5px;">
+                                            @hotel.review_score_word
+                                        </span>
+                                    </div>
+                                }
+
+                                @if (hotel.min_total_price > 0)
+                                {
+                                    <h5 style="color:#52c5fd;">
+                                        €@hotel.min_total_price.ToString("0")<small>/toplam</small>
+                                    </h5>
+                                }
+                                else
+                                {
+                                    <h5 style="color:#777; font-size:13px;"><small>Fiyat bilgisi yok</small></h5>
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+            else if (ViewBag.Error == null)
+            {
+                <div class="text-center" style="padding: 80px 0;">
+                    <i class="fa fa-search" style="font-size:48px; color:#2b3146;"></i>
+                    <h4 style="color:#777; margin-top:20px;">Sonuç Bulunamadı</h4>
+                    <p style="color:#555;">Farklı tarih veya şehir ile tekrar arayın.</p>
+                    <a href="/" class="theme_btn button_hover" style="margin-top:15px; display:inline-block; padding:8px 30px;">
+                        Geri Dön
+                    </a>
+                </div>
+            }
+
+        </div>
+    </section>
+
+    @await Component.InvokeAsync("_DefaultFooterComponent")
+    @await Component.InvokeAsync("_DefaultScriptComponent")
+</body>
+</html>

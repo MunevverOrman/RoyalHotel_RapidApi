@@ -1,0 +1,33 @@
+﻿@{
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="en">
+
+@await Component.InvokeAsync("_DefaultHeadComponent")
+
+<body>
+
+    @await Component.InvokeAsync("_DefaultHeaderComponent")
+ 
+ 
+        @await Component.InvokeAsync("_DefaultBannerComponent")
+
+
+    @await Component.InvokeAsync("_DefaultBookingSearchComponent")
+
+    @await Component.InvokeAsync("_DefaultAccomodationComponent")
+
+    @await Component.InvokeAsync("_DefaultServiceComponent")
+
+    @await Component.InvokeAsync("_DefaultAboutComponent")
+
+    @await Component.InvokeAsync("_DefaultLastBlogComponent")
+
+    @await Component.InvokeAsync("_DefaultFooterComponent")
+
+    @await Component.InvokeAsync("_DefaultScriptComponent")
+
+</body>
+</html>
